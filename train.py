@@ -19,7 +19,7 @@ MODEL_NAME = "hfl/chinese-roberta-wwm-ext"
 Load the datasets
 """
 raw_datasets = load_dataset(
-    "json", data_files={"train": "example_train.json", "test": "example_test.json"}
+    "json", data_files={"train": "train.json", "dev": "dev.json", "test": "test.json"}
 )
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
@@ -125,7 +125,7 @@ trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=tokenized_datasets["train"],
-    eval_dataset=tokenized_datasets["test"],
+    eval_dataset=tokenized_datasets["dev"],
     processing_class=tokenizer,
     data_collator=data_collator,
     compute_metrics=compute_metrics,
