@@ -41,4 +41,4 @@ def split_dataset(input_file, train_file, dev_file, test_file):
 
 if __name__ == "__main__":
     # 假设你所有的 2000 条数据都在 all_data.json 里
-    split_dataset("data.json", "train.json", "dev.json", "test.json")
+    split_dataset("data.jsonl", "train.json", "dev.json", "test.json")
