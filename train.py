@@ -116,6 +116,8 @@ training_args = TrainingArguments(
     save_total_limit=2,
 )
 
+print("Trainer 使用的训练设备是:", training_args.device)
+
 """
 trainer
 """
@@ -135,3 +137,8 @@ print("start ____________________________________________________")
 trainer.train()
 print("end ____________________________________________________")
 trainer.save_model("./best_cfo_model")
+
+
+print("Test Set Evaluation...")
+test_results = trainer.evaluate(eval_dataset=tokenized_datasets["test"])
+print(test_results)
