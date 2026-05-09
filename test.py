@@ -23,7 +23,7 @@ from transformers import AutoTokenizer, AutoModelForTokenClassification
 tokenizer = AutoTokenizer.from_pretrained("./best_cfo_model")
 model = AutoModelForTokenClassification.from_pretrained("./best_cfo_model")
 
-input = "他是二把手"
+input = input("请输入待测中文句子Please put in your Chinese sentence:")
 
 
 model_inputs = tokenizer(input, return_tensors="pt")
@@ -32,4 +32,8 @@ with torch.no_grad():
 
 predictions = outputs.logits.argmax(dim=-1).squeeze().tolist()
 
-print(predictions)
+tokens = tokenizer.convert_id_to_tokens(model_inputs["input_ids"][0])
+labels = [id2label[i] for i in predictions]
+
+for token, label in zip(tokens, labels):
+    print(f"{token} -> {label}")
