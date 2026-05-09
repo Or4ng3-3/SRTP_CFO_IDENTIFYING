@@ -32,7 +32,7 @@ with torch.no_grad():
 
 predictions = outputs.logits.argmax(dim=-1).squeeze().tolist()
 
-tokens = tokenizer.convert_id_to_tokens(model_inputs["input_ids"][0])
+tokens = tokenizer.convert_ids_to_tokens(model_inputs["input_ids"][0])
 labels = [id2label[i] for i in predictions]
 
 for token, label in zip(tokens, labels):
